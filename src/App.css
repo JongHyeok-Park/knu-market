@@ -1,3 +1,29 @@
-.App {
-  text-align: center;
+:root {
+  --primary1-color: #E60000;
+  --primary2-color: #797977;
+  --secondary-color: #BF7C26
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 12px
 }

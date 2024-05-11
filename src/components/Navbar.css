@@ -1,0 +1,46 @@
+nav {
+  padding: 12px 0;
+  background-color: var(--primary1-color);
+}
+
+.nav-wrapper {
+  width: 1280px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 900;
+  color: white;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.right-menus {
+  display: flex;
+  margin: 0;
+  margin-left: auto;
+  list-style: none;
+  align-items: center;
+}
+
+.right-menus > li {
+  margin-left: 10px;
+  color: white;
+}
+
+#login {
+  cursor: pointer;
+}
+
+#alarm {
+  padding: 5px;
+  background-color: var(--secondary-color);
+  border-radius: 100%;
+  border: 0;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
