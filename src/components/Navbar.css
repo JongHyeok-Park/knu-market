@@ -29,6 +29,7 @@ nav {
 .right-menus > li {
   margin-left: 10px;
   color: white;
+  position: relative;
 }
 
 #login {
@@ -43,4 +44,34 @@ nav {
   width: 35px;
   height: 35px;
   cursor: pointer;
+}
+
+.alarm-list {
+  margin: 5px 0;
+  font-size: 12px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  position: absolute;
+  right: 0;
+  width: 200px;
+  overflow-y: scroll;
+}
+
+.alarm-list::-webkit-scrollbar {
+  display: none;
+}
+
+.alarm-list > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.alarm-list > ul > hr {
+  border: 0;
+  height: 1px;
+  background-color: #d9d9d9;
 }

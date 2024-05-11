@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import './Navbar.css'
 import { Link } from 'react-router-dom';
+import AlarmItem from './AlarmItem';
 
 function Navbar() {
   let [userInfo, setUserInfo] = useState(null);
+  let [openAlarm, setOpenAlarm] = useState(false);
 
   return (
     <nav>
@@ -18,9 +20,24 @@ function Navbar() {
             userInfo ? <li>유저프로필</li> : <li id='login'>로그인</li> 
           }
           <li>
-            <button id='alarm'>
+            <button id='alarm' onClick={() => {
+              setOpenAlarm(!openAlarm);
+            }}>
               <img src={require('../image/ph_bell.png')} alt="ph_bell" />
             </button>
+            {
+              openAlarm ? (
+                <div className='alarm-list'>
+                  <ul>
+                    <AlarmItem />
+                    <hr />
+                    <AlarmItem />
+                    <hr />
+                    <AlarmItem />
+                  </ul>
+                  </div>
+              ) : null
+             }
           </li>
         </ul>
       </div>

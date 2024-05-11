@@ -1,0 +1,33 @@
+.alarm-item {
+  display: flex;
+  flex-direction: column;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor: pointer;
+}
+
+.alarm-product {
+  display: flex;
+}
+
+.alarm-product-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+
+.alarm-image {
+  background-color: #D9D9D9;
+  width: 50px;
+  height: 50px;
+}
+
+.alarm-date {
+  font-size: 10px;
+}
+
+.alarm-product-date {
+  font-size: 10px
+}
