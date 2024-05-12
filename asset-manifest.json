@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/knu-market/static/css/main.74d550e9.css",
+    "main.css": "/knu-market/static/css/main.0501a8d6.css",
     "main.js": "/knu-market/static/js/main.ef96c915.js",
     "static/js/453.694aad57.chunk.js": "/knu-market/static/js/453.694aad57.chunk.js",
     "index.html": "/knu-market/index.html",
-    "main.74d550e9.css.map": "/knu-market/static/css/main.74d550e9.css.map",
+    "main.0501a8d6.css.map": "/knu-market/static/css/main.0501a8d6.css.map",
     "main.ef96c915.js.map": "/knu-market/static/js/main.ef96c915.js.map",
     "453.694aad57.chunk.js.map": "/knu-market/static/js/453.694aad57.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.74d550e9.css",
+    "static/css/main.0501a8d6.css",
     "static/js/main.ef96c915.js"
   ]
 }
