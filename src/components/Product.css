@@ -1,0 +1,39 @@
+.product {
+  display: inline-block;
+  width: 305px;
+}
+
+.product > a {
+  text-decoration: none;
+  color: black;
+}
+
+.product-image-wrapper {
+  width: 305px;
+  height: 305px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #d9d9d9;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary2-color);
+}
+
+.product-image {
+  width: 100%
+}
+
+.product-price {
+  margin-bottom: 10px;
+}
+
+.product-subinfo {
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+}
+
+.product-date {
+  color: var(--primary2-color);
+}

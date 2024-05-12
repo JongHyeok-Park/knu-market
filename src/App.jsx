@@ -10,6 +10,11 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
       </Routes>
+      <footer>
+        <div className='footer-inner'>
+
+        </div>
+      </footer>
     </div>
   );
 }
