@@ -17,28 +17,35 @@ function Navbar() {
         </Link>
         <ul className="right-menus">
           {
-            userInfo ? <li>유저프로필</li> : <li id='login'>로그인</li> 
+            userInfo ? (
+              <li>유저프로필</li>
+            ) : <li id='login'>로그인</li> 
           }
-          <li>
-            <button id='alarm' onClick={() => {
-              setOpenAlarm(!openAlarm);
-            }}>
-              <img src={require('../image/ph_bell.png')} alt="ph_bell" />
-            </button>
-            {
-              openAlarm ? (
-                <div className='alarm-list'>
-                  <ul>
-                    <AlarmItem />
-                    <hr />
-                    <AlarmItem />
-                    <hr />
-                    <AlarmItem />
-                  </ul>
-                  </div>
-              ) : null
-             }
-          </li>
+          {
+            userInfo ? (
+              <li>
+                <button id='alarm' onClick={() => {
+                  setOpenAlarm(!openAlarm);
+                }}>
+                  <img src={require('../image/ph_bell.png')} alt="ph_bell" />
+                </button>
+                {
+                  openAlarm ? (
+                    <div className='alarm-list'>
+                      <ul>
+                        <AlarmItem />
+                        <hr />
+                        <AlarmItem />
+                        <hr />
+                        <AlarmItem />
+                      </ul>
+                      </div>
+                  ) : null
+                }
+              </li>) : null
+            
+          }
+          
         </ul>
       </div>
     </nav>
