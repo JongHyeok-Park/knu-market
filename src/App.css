@@ -36,14 +36,3 @@ p {
 .App {
   font-family: "Noto Sans KR", sans-serif;
 }
-
-footer {
-  background-color: #1E1E1E;
-  padding: 100px 0;
-}
-
-.footer-inner {
-  width: 1280px;
-  margin: auto;
-  max-width: 100%;
-}

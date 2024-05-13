@@ -2,6 +2,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Main from './routes/Main';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -10,11 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
       </Routes>
-      <footer>
-        <div className='footer-inner'>
-
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
