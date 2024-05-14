@@ -11,7 +11,7 @@ function Product(props) {
   const hour = min * 60;
   const day = hour * 24;
   const week = day * 7;
-  const month = day * 30;
+  const month = day * 31;
 
   
   let date;
@@ -31,7 +31,7 @@ function Product(props) {
     date = timeGap / day;
     date = date.toFixed(0);
     date = date + '일';
-  } else if (timeGap < day * 31) {
+  } else if (timeGap < month) {
     date = timeGap / week;
     date = date.toFixed(0)
     date = date + '주';
@@ -39,7 +39,7 @@ function Product(props) {
 
   return (
     <div className="product">
-      <Link>
+      <Link to={'/detail/' + props.product.id}>
         <div className='product-image-wrapper'>
           {
             props.product.imagePath ? 
