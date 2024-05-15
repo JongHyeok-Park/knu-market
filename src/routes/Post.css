@@ -1,0 +1,133 @@
+.post {
+  width: 1280px;
+  margin: auto;
+  padding: 100px 0;
+  max-width: 100%;
+}
+
+.post-info {
+  display: flex;
+  width: 100%;
+}
+
+.post-input-left {
+  width: 630px;
+  height: 630px;
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #d9d9d9;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  margin-right: 20px;
+  flex: none;
+}
+
+.detail-input-right {
+  width: 100%;
+  position: relative;
+}
+
+.detail-product-info {
+  height: 590px;
+}
+
+.detail-product-info > div {
+  width: 100%;
+  position: relative;
+}
+
+.detail-product-info > div > input {
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+}
+
+#upload-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.post-input-left:hover #upload-image {
+  visibility: visible;
+  opacity: 1;
+}
+
+#title {
+  padding: 5px 10px;
+  border: #d9d9d9 solid 1px;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#price {
+  padding: 5px 10px;
+  border: #d9d9d9 solid 1px;
+  border-radius: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 30px;
+  margin-bottom: 5px;
+}
+
+#description {
+  width: 100%;
+  height: 83%;
+  box-sizing: border-box;
+  border: #d9d9d9 solid 1px;
+  padding: 10px;
+  margin-bottom: 5px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.price-label {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary2-color);
+}
+
+#submit {
+  background-color: var(--primary1-color);
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-weight: 700;
+}
+
+#cancle {
+  background-color: #d9d9d9;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#image-input {
+  display: none;
+}
+
+.product-btn-container {
+  text-align: right;
+}

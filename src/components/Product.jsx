@@ -12,7 +12,6 @@ function Product(props) {
   const day = hour * 24;
   const week = day * 7;
   const month = day * 31;
-
   
   let date;
   if (timeGap < min) {
@@ -26,7 +25,7 @@ function Product(props) {
   } else if (timeGap < day) {
     date = timeGap / hour;
     date = date.toFixed(0);
-    date = date + '시';
+    date = date + '시간';
   } else if (timeGap < week) {
     date = timeGap / day;
     date = date.toFixed(0);
@@ -36,6 +35,8 @@ function Product(props) {
     date = date.toFixed(0)
     date = date + '주';
   } 
+
+  console.log(props.product.createdAt);
 
   return (
     <div className="product">

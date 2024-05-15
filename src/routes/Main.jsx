@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import Product from '../components/Product';
 import './Main.css';
+import { useNavigate } from 'react-router-dom';
 
 function Main() {
   let [products, setProducts] = useState([]);
   let [page, setPage] = useState(0);
   let [showBtn, setShowBtn] = useState(true);
+  const navigate = useNavigate();
 
   const getProducts = async () => {
     await fetch(process.env.REACT_APP_API_URL + '/api/product/list/' + page)
@@ -33,7 +35,9 @@ function Main() {
         </div>
         <section className='product-section'>
           <div className='product-button-wrapper'>
-            <button id='add-product-btn'>
+            <button id='add-product-btn' onClick={() => {
+              navigate('/post');
+            }}>
               상품등록
             </button>
           </div>

@@ -4,6 +4,7 @@ import Main from './routes/Main';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Detail from './routes/Detail';
+import Post from './routes/Post';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/detail/:id' element={<Detail />} />
+        <Route path='/post' element={<Post />} />
       </Routes>
       <Footer />
     </div>
