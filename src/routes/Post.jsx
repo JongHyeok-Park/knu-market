@@ -29,7 +29,7 @@ function Post(props) {
     console.log(data);
     if (data.title && data.price && data.description) {
       console.log(data.image.get('image'));
-      await fetch(process.env.REACT_APP_API_URL + `/api/product?title=${data.title}&price=${data.price}&description=${data.description}`, 
+      let res = await fetch(process.env.REACT_APP_API_URL + `/api/product?title=${data.title}&price=${data.price}&description=${data.description}`, 
       {
         method: 'POST',
         headers: {
@@ -37,6 +37,13 @@ function Post(props) {
         },
         body: data.image
       });
+
+      if (!res.ok) {
+        alert('서버 오류입니다. 잠시 후 다시 시도해주세요.');
+        return;
+      }
+
+      navigate('/');
     }
   }
 
