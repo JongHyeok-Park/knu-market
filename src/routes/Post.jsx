@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import './Post.css';
 import { getCookie } from '../utils/cookieManage';
+import { useState } from 'react';
 
 function Post(props) {
   const navigate = useNavigate();
+  let [inputImage, setInputImage] = useState();
   
   const makeSendData = () => {
     let title = document.getElementById('title').value;
@@ -43,6 +45,11 @@ function Post(props) {
       <div className='post-inner'>
         <div className='post-info'>
           <div className='post-input-left'>
+            {
+              inputImage ? 
+                <img className='input-image' src={inputImage} alt='input-image' /> :
+                null
+            }
             <div id='upload-image' onClick={() => {
               let fileInput = document.getElementById('image-input');
               fileInput.click();
@@ -76,8 +83,14 @@ function Post(props) {
           </div>
         </div>
       </div>
-      <input type="file" id='image-input' accept='image/png, image/jpg, image/jpeg'/>
-    </div>
+      <input type="file" id='image-input' 
+        accept='image/png, image/jpg, image/jpeg'
+        onChange={(e) => {
+          let file = e.target.files[0]
+          let imgUrl = URL.createObjectURL(file);
+          setInputImage(imgUrl);
+        }}/>
+    </div> 
   )
 }
 
