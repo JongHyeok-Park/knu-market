@@ -54,7 +54,7 @@ function Post(props) {
           <div className='post-input-left'>
             {
               inputImage ? 
-                <img className='input-image' src={inputImage} alt='input-image' /> :
+                <img className='input-image' src={inputImage} alt='input-img' /> :
                 null
             }
             <div id='upload-image' onClick={() => {

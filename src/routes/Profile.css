@@ -1,0 +1,90 @@
+.profile {
+  width: 1280px;
+  margin: auto;
+  padding: 100px 0;
+  max-width: 100%;
+}
+
+.profile-header {
+  position: relative;
+  text-align: center;
+}
+
+.profile-image-wrapper {
+  width: 414px;
+  height: 414px;
+  border-radius: 100%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-btn-container {
+  display: inline-block;
+  vertical-align: top;
+  position: absolute;
+  right: 0;
+}
+
+.btn {
+  width: 120px;
+  height: 43px;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+#save-btn,
+#modify-btn {
+  background-color: var(--primary1-color);
+}
+
+#cancle-btn {
+  background-color: #d9d9d9;
+}
+
+.star-score-wrapper {
+  text-align: left;
+  max-width: 630px;
+  margin: auto;
+}
+
+.profile-name-wrapper,
+.star-score-wrapper {
+  margin-top: 50px;
+  position: relative;
+}
+
+#score-value {
+  position: absolute;
+  right: 0;
+  top: 0;
+  vertical-align: top;
+  font-size: 14px;
+  color: var(--primary2-color);
+}
+
+.star-score {
+  width: 100%;
+  height: 15px;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#score {
+  background: linear-gradient(to right, #DADA20, #FFF500);
+  height: 100%;
+  width: 40%;
+  border-radius: 20px;
+}

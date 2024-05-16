@@ -1,6 +1,7 @@
 nav {
   padding: 12px 0;
   background-color: var(--primary1-color);
+  z-index: 999;
 }
 
 .nav-wrapper {
@@ -60,6 +61,7 @@ nav {
   right: 0;
   width: 200px;
   overflow-y: scroll;
+  z-index: 990;
 }
 
 .alarm-list::-webkit-scrollbar {
@@ -76,4 +78,8 @@ nav {
   border: 0;
   height: 1px;
   background-color: #d9d9d9;
+}
+
+#profile-info {
+  cursor: pointer;
 }

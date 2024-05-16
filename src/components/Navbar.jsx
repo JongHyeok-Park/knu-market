@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import './Navbar.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AlarmItem from './AlarmItem';
 import { useSelector } from 'react-redux';
 
 function Navbar() {
   let user = useSelector(state => state.user);
   let [openAlarm, setOpenAlarm] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav>
@@ -18,8 +19,10 @@ function Navbar() {
         </Link>
         <ul className="right-menus">
           {
-            user ? (
-              <li>유저프로필</li>
+            user.name ? (
+              <li id='profile-info' onClick={() => {
+                navigate('/profile');
+              }}>{user.name}</li>
             ) : <li id='login'>로그인</li> 
           }
           {
