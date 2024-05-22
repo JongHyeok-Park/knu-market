@@ -3,14 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 let user = createSlice({
   name: "user",
   initialState: {
-    name: 'Lee siuen'
+    name: null,
+    imagePath: null,
+    starScore: null
   },
   reducers: {
     setUser: (state, action) => {
-      if (action.payload) {
-        state.name = action.payload.name
-      }
-      state.name = 'Lee sieun'
+      state.name = action.payload.name
+      state.imagePath = action.payload.imagePath
+      state.starScore = action.payload.starScore
     }
   }
 });

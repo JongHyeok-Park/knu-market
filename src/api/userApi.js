@@ -34,3 +34,5 @@ const userExist = async (name, accessToken) => {
 
   return res.json();
 }
+
+export { getUser, patchUser, userExist };

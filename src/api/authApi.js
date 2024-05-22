@@ -15,3 +15,5 @@ const reissueApi = async (refreshToken) => {
 
   return res.json();
 }
+
+export { loginApi, reissueApi };

@@ -22,7 +22,7 @@ function Navbar() {
             user.name ? (
               <li id='profile-info' onClick={() => {
                 navigate('/profile');
-              }}>{user.name}</li>
+              }}><img className='user-image' src={user.imagePath ? user.imagePath : require('../image/user_icon.png')} alt='profile' />{user.name}</li>
             ) : <li id='login'>로그인</li> 
           }
           {
