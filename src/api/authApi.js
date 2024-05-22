@@ -13,6 +13,11 @@ const reissueApi = async (refreshToken) => {
     }
   })
 
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
   return res.json();
 }
 

@@ -13,7 +13,9 @@ function Profile(props) {
       <div className="profile-inner">
         <div className='profile-header'>
           <div className='profile-image-wrapper'>
-            <img className='profile-image' src="https://avatars.githubusercontent.com/u/147706431?v=4" alt="profile" />
+            <img className='profile-image' src={
+              user.imagePath || require('../image/user_icon.png')
+            } alt="profile" />
           </div>
           <div className='profile-btn-container'>
             {
@@ -35,9 +37,9 @@ function Profile(props) {
           </div>
           <div className='star-score-wrapper'>
             <h4>별자리 점수</h4>
-            <span id='score-value'>1,200점</span>
+            <span id='score-value'>{Number(user.starScore).toLocaleString()}점</span>
             <div className='star-score'>
-              <div id='score'></div>
+              <div id='score' style={{width: (user.starScore / 30000 * 100) + '%'}}></div>
             </div>
           </div>
         </div>
