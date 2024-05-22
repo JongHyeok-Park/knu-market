@@ -11,14 +11,28 @@ function Main() {
 
   const getProducts = async () => {
     await fetch(process.env.REACT_APP_API_URL + '/api/product/list/' + page)
-    .then(res => res.json())
+    .then(async res => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        let error = await res.text();
+        throw new Error(error);
+      }
+    })
     .then(result => {
       if (result.length < 8) setShowBtn(false);
       let productsCopy = [...products];
       let newProducts = productsCopy.concat(result);
       setProducts(newProducts);
-    });
-  } 
+    })
+    .catch(err => {
+      if (err.message) {
+        alert(err.message);
+      } else {
+        alert('서버 오류입니다.')
+      }
+    })
+  };
 
   useEffect(() => {
     getProducts();

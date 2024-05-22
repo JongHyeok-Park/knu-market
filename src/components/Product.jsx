@@ -36,15 +36,13 @@ function Product(props) {
     date = date + '주';
   } 
 
-  console.log(props.product.createdAt);
-
   return (
     <div className="product">
       <Link to={'/detail/' + props.product.id}>
         <div className='product-image-wrapper'>
           {
             props.product.imagePath ? 
-            <img className="product-image" src={props.product.imagePath} alt="product-image" /> :
+            <img className="product-image" src={props.product.imagePath} alt="product" /> :
             "이미지가 없어요."
           }
         </div>

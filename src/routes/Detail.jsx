@@ -9,9 +9,10 @@ function Detail(props) {
 
   const getDetailInfo = async () => {
     await fetch(process.env.REACT_APP_API_URL + '/api/product/' + params.id)
-      .then(res => {
+      .then(async res => {
         if (!res.ok) {
-          throw new Error(res.status);
+          let error = await res.text();
+          throw new Error(error);
         }
         return res.json();
       })
@@ -22,10 +23,8 @@ function Detail(props) {
         setProductInfo(result);
       })
       .catch((err) => {
-        if (err.message === '404') {
-          alert("상품이 존재하지 않습니다.");
-          navigate('/');
-        }
+        alert(err.message)
+        navigate('/');
       });
   };
 
@@ -43,7 +42,7 @@ function Detail(props) {
                 <div className='detail-info-left'>
                   {
                     productInfo.imagePath ? 
-                    <img src={productInfo.imagePath} alt="product-image" /> :
+                    <img src={productInfo.imagePath} alt="product" /> :
                     "이미지가 없어요"
                   }
                 </div>
@@ -59,8 +58,8 @@ function Detail(props) {
                       <div className='user-image-wrapper'>
                         {
                           productInfo.userImagePath ?
-                          <img src={productInfo.userImagePath} alt="user-image" /> :
-                          <img src={require('../image/user_icon.png')} alt="user-image" />
+                          <img src={productInfo.userImagePath} alt="user" /> :
+                          <img src={require('../image/user_icon.png')} alt="user" />
                         }
                       </div>
                       <span>
