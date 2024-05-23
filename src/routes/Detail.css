@@ -39,7 +39,6 @@
 
 .detail-info-left {
   width: 100%;
-  max-width: 630px;
   aspect-ratio: 1;
   display: inline-block;
   margin-right: 20px;
@@ -61,7 +60,7 @@
 
 .detail-info-right {
   display: flex;
-  width: 630px;
+  width: 100%;
   min-height: 630px;
   flex-direction: column;
 }
@@ -76,6 +75,7 @@
 
 .detail-info-user {
   margin-top: auto;
+  width: 100%;
 }
 
 .detail-info-user > .top {
@@ -100,4 +100,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .detail-info {
+    flex-direction: column;
+  }
+
+  .detail-info-left {
+    margin-bottom: 20px;
+  }
 }

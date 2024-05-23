@@ -26,7 +26,7 @@ function Navbar() {
             ) : <li id='login'>로그인</li> 
           }
           {
-            user ? (
+            user.name ? (
               <li>
                 <button id='alarm' onClick={() => {
                   setOpenAlarm(!openAlarm);

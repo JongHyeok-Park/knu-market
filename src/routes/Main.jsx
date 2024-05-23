@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import Product from '../components/Product';
 import './Main.css';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Main() {
   let [products, setProducts] = useState([]);
   let [page, setPage] = useState(0);
   let [showBtn, setShowBtn] = useState(true);
+  let user = useSelector(state => state.user);
   const navigate = useNavigate();
 
   const getProducts = async () => {
@@ -36,6 +38,7 @@ function Main() {
 
   useEffect(() => {
     getProducts();
+    // eslint-disable-next-line
   }, [page]);
 
   return (
@@ -48,13 +51,18 @@ function Main() {
           </form>
         </div>
         <section className='product-section'>
-          <div className='product-button-wrapper'>
-            <button id='add-product-btn' onClick={() => {
-              navigate('/post');
-            }}>
-              상품등록
-            </button>
-          </div>
+          {
+            user.name ? (
+              <div className='product-button-wrapper'>
+                <button id='add-product-btn' onClick={() => {
+                  navigate('/post');
+                }}>
+                  상품등록
+                </button>
+              </div>
+            ) : 
+            null
+          }
           <div className='products-container'>
             {
               products.map((item) => {
