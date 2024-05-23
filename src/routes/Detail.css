@@ -102,6 +102,19 @@
   object-fit: cover;
 }
 
+.detail-manage-btn-container {
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+#edit-btn {
+  background-color: var(--primary1-color);
+}
+
+#delete-btn {
+  background-color: var(--primary2-color);
+}
+
 @media screen and (max-width: 768px) {
   .detail-info {
     flex-direction: column;
