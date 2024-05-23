@@ -30,7 +30,8 @@ function Detail(props) {
 
   useEffect(() => {
     getDetailInfo();
-  });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="detail">

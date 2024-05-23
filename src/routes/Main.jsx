@@ -3,11 +3,14 @@ import Product from '../components/Product';
 import './Main.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { searchProductApi } from '../api/productApi';
 
 function Main() {
   let [products, setProducts] = useState([]);
   let [page, setPage] = useState(0);
   let [showBtn, setShowBtn] = useState(true);
+  let [searchMode, setSearchMode] = useState(false);
+  let [keyword, setKeyword] = useState('');
   let user = useSelector(state => state.user);
   const navigate = useNavigate();
 
@@ -21,11 +24,15 @@ function Main() {
         throw new Error(error);
       }
     })
-    .then(result => {
-      if (result.length < 8) setShowBtn(false);
-      let productsCopy = [...products];
-      let newProducts = productsCopy.concat(result);
-      setProducts(newProducts);
+    .then(data => {
+      if (data.length < 8) setShowBtn(false);
+      if (page === 0) {
+        setProducts(data);
+      } else {
+        let productsCopy = [...products];
+        let newProducts = productsCopy.concat(data);
+        setProducts(newProducts);
+      }
     })
     .catch(err => {
       if (err.message) {
@@ -36,10 +43,35 @@ function Main() {
     })
   };
 
+  const getSearchProducts = async () => {
+    searchProductApi(keyword, page)
+      .then((data) => {
+        if (data.length < 8) setShowBtn(false);
+        if (page === 0) {
+          setProducts(data);
+        } else {
+          let productsCopy = [...products];
+          let newProducts = productsCopy.concat(data);
+          setProducts(newProducts);
+        }
+      })
+      .catch(err => {
+        if (err.message) {
+          alert(err.message);
+        } else {
+          alert('서버 오류입니다.')
+        }
+      })
+  };
+
   useEffect(() => {
-    getProducts();
+    if (!searchMode) {
+      getProducts();
+    } else {
+      getSearchProducts();
+    }
     // eslint-disable-next-line
-  }, [page]);
+  }, [page, keyword]);
 
   return (
     <div className="main">
@@ -47,7 +79,16 @@ function Main() {
         <div className='search-input-wrapper'>
           <form>
             <img className='search-icon' src={require('../image/search_icon.png')} alt="search_icon" />
-            <input type="text" id='search-input' placeholder='키워드를 입력해보세요.'/>
+            <input type="text" id='search-input' placeholder='키워드를 입력해보세요.' onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                console.log(e.key);
+                setKeyword(e.currentTarget.value)
+                setPage(0);
+                setShowBtn(true);
+                setSearchMode(true);
+              }
+            }}/>
           </form>
         </div>
         <section className='product-section'>
