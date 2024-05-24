@@ -8,12 +8,13 @@ function Redirect(props) {
   const navigate = useNavigate();
   let [isLogin, setIsLogin] = useState(false);
 
-  console.log(code);
-  try {
-    login(code, setIsLogin);
-  } catch {
-    navigate('/');
-  }
+  useEffect(() => {
+    try {
+      login(code, setIsLogin);
+    } catch {
+      navigate('/');
+    }
+  }, []);
 
   if (isLogin) {
     navigate('/');
