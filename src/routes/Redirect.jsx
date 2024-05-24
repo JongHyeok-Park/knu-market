@@ -1,13 +1,14 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { login } from "../services/authService";
 import { useEffect, useState } from "react";
 
 function Redirect(props) {
-  const params = new URL(document.location).searchParams;
-  const code = params.get("code");
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
   const navigate = useNavigate();
   let [isLogin, setIsLogin] = useState(false);
 
+  console.log(code);
   try {
     login(code, setIsLogin);
   } catch {
