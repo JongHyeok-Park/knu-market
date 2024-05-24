@@ -12,7 +12,7 @@ const reissue = () => {
     });
 }
 
-const login = (code, setIsLogin) => {
+const login = async (code, setIsLogin) => {
   loginApi(code)
     .then((data) => {
       setCookie('accessToken', data.accessToken, 2 * 60);

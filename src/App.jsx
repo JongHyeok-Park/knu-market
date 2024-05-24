@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Detail from './routes/Detail';
 import Post from './routes/Post';
 import Profile from './routes/Profile';
+import Redirect from './routes/Redirect';
 import { useEffect } from 'react';
 import useUser from './hooks/useUser';
 import { useSelector } from 'react-redux';
@@ -32,6 +33,7 @@ function App() {
         <Route path='/detail/:id' element={<Detail />} />
         <Route path='/post' element={<Post />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/redirect' element={<Redirect />} />
       </Routes>
       <Footer />
     </div>

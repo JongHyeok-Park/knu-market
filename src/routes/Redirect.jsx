@@ -3,8 +3,8 @@ import { login } from "../services/authService";
 import { useEffect, useState } from "react";
 
 function Redirect(props) {
-  const params = useParams();
-  const code = params.code;
+  const params = new URL(document.location).searchParams;
+  const code = params.get("code");
   const navigate = useNavigate();
   let [isLogin, setIsLogin] = useState(false);
 
@@ -25,3 +25,5 @@ function Redirect(props) {
     </div>
   )
 }
+
+export default Redirect;
