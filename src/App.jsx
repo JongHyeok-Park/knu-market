@@ -34,6 +34,7 @@ function App() {
         <Route path='/post' element={<Post />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/redirect' element={<Redirect />} />
+        <Route path='*' element={(<div>존재하지 않는 페이지입니다.</div>)} />
       </Routes>
       <Footer />
     </div>
