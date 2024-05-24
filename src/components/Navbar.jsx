@@ -23,7 +23,9 @@ function Navbar() {
               <li id='profile-info' onClick={() => {
                 navigate('/profile');
               }}><img className='user-image' src={user.imagePath ? user.imagePath : require('../image/user_icon.png')} alt='profile' />{user.name}</li>
-            ) : <li id='login'>로그인</li> 
+            ) : <li id='login'>
+              <a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=7e83cd7e8b53aa9771020e70b3097d37&redirect_uri=https://jonghyeok-park.github.io/knu-market/redirect">로그인</a>
+            </li> 
           }
           {
             user.name ? (
