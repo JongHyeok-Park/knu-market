@@ -24,7 +24,36 @@ const deleteProductApi = async (id) => {
     throw new Error(message);
   }
 
-  return res.json();
+  return res.text();
 }
 
-export { searchProductApi, deleteProductApi };
+const modifyProductApi = async (id, title, price, description, image) => {
+  let res
+
+  if (image) {
+    res = await fetch(process.env.REACT_APP_API_URL + `/api/product?id=${id}&title=${title}&price=${price}&description=${description}`, {
+      method: 'PATCH',
+      headers: {
+        authorization: 'Bearer ' + getCookie('accessToken')
+      },
+      body: image
+    })
+  } else {
+    res = await fetch(process.env.REACT_APP_API_URL + `/api/product?id=${id}&title=${title}&price=${price}&description=${description}`, {
+      method: 'PATCH',
+      headers: {
+        authorization: 'Bearer ' + getCookie('accessToken')
+      }
+    })
+  }
+   
+
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
+  return res.text();
+}
+
+export { searchProductApi, deleteProductApi, modifyProductApi };

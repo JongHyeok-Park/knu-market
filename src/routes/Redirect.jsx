@@ -1,19 +1,30 @@
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { login } from "../services/authService";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/userSlice";
+import { getUser } from "../api/userApi"
+import { getCookie } from "../utils/cookieManage";
 
 function Redirect(props) {
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     try {
-      login(code, setIsLogin);
+      login(code);
+      getUser(getCookie('accessToken'))
+        .then((data) => {
+          dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
+          setIsLogin(true);
+        });
     } catch {
       navigate('/');
     }
+    // eslint-disable-next-line
   }, []);
 
   if (isLogin) {

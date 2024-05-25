@@ -1,11 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './Post.css';
 import { getCookie } from '../utils/cookieManage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { modifyProductApi } from '../api/productApi';
 
-function Post(props) {
+function Modify(props) {
   const navigate = useNavigate();
+  const params = useParams();
   let [inputImage, setInputImage] = useState();
+  let [productInfo, setProductInfo] = useState({});
   
   const makeSendData = () => {
     let title = document.getElementById('title').value;
@@ -24,28 +27,35 @@ function Post(props) {
     };
   };
 
-  const submitProduct = async () => {
-    const data = makeSendData();
-    console.log(data);
-    if (data.title && data.price && data.description) {
-      console.log(data.image.get('image'));
-      let res = await fetch(process.env.REACT_APP_API_URL + `/api/product?title=${data.title}&price=${data.price}&description=${data.description}`, 
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + getCookie('accessToken')
-        },
-        body: data.image
+  const getDetailInfo = async () => {
+    await fetch(process.env.REACT_APP_API_URL + '/api/product/' + params.id)
+      .then(async res => {
+        if (!res.ok) {
+          let error = await res.text();
+          throw new Error(error);
+        }
+        return res.json();
+      })
+      .then(result => {
+        setProductInfo(result);
+        setInputImage(result.imagePath);
+      })
+      .catch((err) => {
+        alert(err.message)
+        navigate('/');
       });
+  };
 
-      if (!res.ok) {
-        alert('서버 오류입니다. 잠시 후 다시 시도해주세요.');
-        return;
-      }
+  useEffect(() => {
+    getDetailInfo();
+  }, []);
 
-      navigate('/');
-    }
-  }
+  useEffect(() => {
+    document.getElementById('title').value = productInfo.title;
+    document.getElementById('price').value = productInfo.price;
+    document.getElementById('description').innerHTML = productInfo.description;
+    document.getElementById('')
+  }, [productInfo]);
 
   return (
     <div className="post">
@@ -71,7 +81,6 @@ function Post(props) {
               </div>
               <div>
                 <input type="text" id='price' onChange={(e) => {
-                  console.log(e.target.value)
                   if (isNaN(e.target.value)) {
                     e.preventDefault();
                   }
@@ -81,8 +90,15 @@ function Post(props) {
             </div>
             <div className='product-btn-container'>
               <button id='submit' onClick={() => {
-                submitProduct();
-              }}>작성하기</button>
+                let data = makeSendData();
+                modifyProductApi(params.id, data.title, data.price, data.description, data.image)
+                  .then(() => {
+                    navigate('/');
+                  })
+                  .catch((error) => {
+                    alert(error.message);
+                  });
+              }}>수정하기</button>
               <button id='cancle' onClick={() => {
                 navigate('/');
               }}>취소하기</button>
@@ -101,4 +117,4 @@ function Post(props) {
   )
 }
 
-export default Post;
+export default Modify;

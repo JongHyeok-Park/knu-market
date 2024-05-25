@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './Profile.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '../store/userSlice';
+import { useSelector } from 'react-redux';
 
 function Profile(props) {
   let [modifyMode, setModifyMode] = useState(false)

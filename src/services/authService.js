@@ -1,7 +1,7 @@
 import { loginApi, reissueApi } from "../api/authApi"
 import { getCookie, setCookie } from "../utils/cookieManage"
 
-const reissue = () => {
+const reissue = async () => {
   reissueApi(getCookie('refreshToken'))
     .then((data) => {
       setCookie('accessToken', data.accessToken, 2 * 60);

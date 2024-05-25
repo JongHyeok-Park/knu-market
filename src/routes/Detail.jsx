@@ -24,6 +24,7 @@ function Detail(props) {
         let formattedDate = date.getFullYear() + "-" + ("0" + date.getMonth()).slice(-2) + "-" + ("0" + date.getDay()).slice(-2);
         result.createdAt = formattedDate;
         setProductInfo(result);
+        console.log(result);
       })
       .catch((err) => {
         alert(err.message)
@@ -43,7 +44,7 @@ function Detail(props) {
         (
           <div className='detail-inner'>
             {
-              user.name ? (
+              user.name && user.id === productInfo.userId ? (
                 <div className='detail-manage-btn-container'>
                   <button id='edit-btn' className='btn' onClick={() => {
                     navigate('/modify/' + params.id);
