@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from './store/userSlice';
 import Modify from './routes/Modify';
 import ModifyUser from './routes/ModifyUser';
+import ChatBot from './components/ChatBot';
 
 function App() {
   let dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
           alert(error.message);
         })
     }
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -58,6 +60,7 @@ function App() {
         <Route path='/modifyUser' element={<ModifyUser />} />
         <Route path='*' element={(<div>존재하지 않는 페이지입니다.</div>)} />
       </Routes>
+      <ChatBot />
       <Footer />
     </div>
   );

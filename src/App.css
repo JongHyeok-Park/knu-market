@@ -4,6 +4,10 @@
   --secondary-color: #BF7C26
 }
 
+.App {
+  position: relative;
+}
+
 h1 {
   font-size: 30px;
   font-weight: bold;
