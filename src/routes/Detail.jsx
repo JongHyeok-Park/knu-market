@@ -3,7 +3,7 @@ import './Detail.css';
 import { useEffect, useState } from 'react';
 import { deleteProductApi } from '../api/productApi';
 import { useSelector } from 'react-redux';
-import { getComment } from '../api/commentApi';
+import { getComment, postComment } from '../api/commentApi';
 import Comment from '../components/Comment';
 
 function Detail(props) {
@@ -37,11 +37,22 @@ function Detail(props) {
   const getCommentList = () => {
     getComment(params.id)
       .then((data) => {
-        setCommentList(data);
+        setCommentList(data.reverse());
       })
       .catch((error) => {
         alert(error.message);
       })
+  }
+
+  const comment = () => {
+    let commentContent = document.getElementById('comment-input').value;
+    postComment(params.id, commentContent, false)
+      .then(() => {
+        getCommentList();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   }
 
   useEffect(() => {
@@ -112,6 +123,15 @@ function Detail(props) {
             <section className='bottom'>
               <div className='comment-container'>
                 {
+                  user.id ? (<div className='comment-input-container'>
+                    <img src={user.imagePath} alt="user-profile" />
+                    <textarea id='comment-input'></textarea>
+                    <button id='comment-submit-btn' onClick={() => {
+                      comment();
+                    }}>작성</button>
+                  </div>) : null
+                }
+                {
                   commentList.map((item, i) => {
                     if (!item.isSecret) {
                       return (
@@ -123,6 +143,7 @@ function Detail(props) {
                           key={i} />
                       )
                     }
+                    return null;
                   })
                 }
               </div>

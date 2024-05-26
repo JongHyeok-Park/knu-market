@@ -27,6 +27,7 @@
   color: var(--primary2-color);
   border: none;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .commnet-date {

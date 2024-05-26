@@ -86,6 +86,7 @@
 .user-image-wrapper {
   width: 70px;
   height: 70px;
+  aspect-ratio: 1;
   border-radius: 100%;
   background-color: #d9d9d9;
   display: flex;
@@ -111,6 +112,41 @@
   margin-top: 30px;
 }
 
+.comment-container {
+  width: calc(8 / 12 * 100%);
+}
+
+.comment-input-container {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#comment-input {
+  width: 100%;
+  border-radius: 10px;
+  border: #d9d9d9 1px solid;
+  padding: 5px 10px;
+}
+
+#comment-submit-btn {
+  color: white;
+  background-color: var(--primary1-color);
+  border: none;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+.comment-input-container > img {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  aspect-ratio: 1;
+}
+
 #edit-btn {
   background-color: var(--primary1-color);
 }
@@ -126,5 +162,9 @@
 
   .detail-info-left {
     margin-bottom: 20px;
+  }
+
+  .comment-container {
+    width: 100%;
   }
 }
