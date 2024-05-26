@@ -1,0 +1,34 @@
+.star-score-wrapper {
+  text-align: left;
+  margin: auto;
+}
+
+.star-score-wrapper {
+  position: relative;
+}
+
+#score-value {
+  position: absolute;
+  right: 0;
+  top: 0;
+  vertical-align: top;
+  font-size: 14px;
+  color: var(--primary2-color);
+}
+
+.star-score {
+  width: 100%;
+  height: 15px;
+  background-color: #d9d9d9;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#score {
+  background: linear-gradient(to right, #DADA20, #FFF500);
+  height: 100%;
+  width: 0%;
+  border-radius: 20px;
+  transition: width 0.5s ease-in-out;
+}

@@ -6,16 +6,22 @@ function Product(props) {
   const uploadedDate = new Date(props.product.createdAt);
   let timeGap = today.getTime() - uploadedDate.getTime();
 
+  if (timeGap < 0) {
+    timeGap = 0;
+  }
+
   const sec = 1000;
   const min = sec * 60;
   const hour = min * 60;
   const day = hour * 24;
   const week = day * 7;
   const month = day * 31;
-  const year = day * 365
+  const year = day * 365;
   
   let date;
-  if (timeGap < min) {
+  if (timeGap < (10 * sec)) {
+    date = '방금'
+  } else if (timeGap < min) {
     date = timeGap / sec;
     date = date.toFixed(0);
     date = date + '초';

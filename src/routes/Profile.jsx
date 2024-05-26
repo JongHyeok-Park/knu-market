@@ -1,6 +1,7 @@
 import './Profile.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import StarScore from '../components/StarScore';
 
 function Profile(props) {
   let user = useSelector(state => state.user);
@@ -24,12 +25,8 @@ function Profile(props) {
           <div className='profile-name-wrapper'>
             <h1>{user.name}</h1>
           </div>
-          <div className='star-score-wrapper'>
-            <h4>별자리 점수</h4>
-            <span id='score-value'>{Number(user.starScore).toLocaleString()}점</span>
-            <div className='star-score'>
-              <div id='score' style={{width: (user.starScore / 30000 * 100) + '%'}}></div>
-            </div>
+          <div className="star-score-section">
+            <StarScore />
           </div>
         </div>
       </div>

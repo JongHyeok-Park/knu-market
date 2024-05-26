@@ -5,6 +5,7 @@ import { deleteProductApi } from '../api/productApi';
 import { useSelector } from 'react-redux';
 import { getComment, postComment } from '../api/commentApi';
 import Comment from '../components/Comment';
+import StarScore from '../components/StarScore';
 
 function Detail(props) {
   const params = useParams('id');
@@ -45,10 +46,11 @@ function Detail(props) {
   }
 
   const comment = () => {
-    let commentContent = document.getElementById('comment-input').value;
-    postComment(params.id, commentContent, false)
+    let commentContent = document.getElementById('comment-input');
+    postComment(params.id, commentContent.value, false)
       .then(() => {
         getCommentList();
+        commentContent.value = '';
       })
       .catch((error) => {
         alert(error.message);
@@ -115,7 +117,7 @@ function Detail(props) {
                     </span>
                   </div>
                   <div className='product-star-score-wrapper'>
-                      
+                      <StarScore />
                   </div>
                 </div>
               </div>

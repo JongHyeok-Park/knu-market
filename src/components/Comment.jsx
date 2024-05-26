@@ -22,6 +22,10 @@ function Comment(props) {
       })
   }
 
+  if (timeGap < 0) {
+    timeGap = 0;
+  }
+
   const sec = 1000;
   const min = sec * 60;
   const hour = min * 60;
@@ -31,7 +35,9 @@ function Comment(props) {
   const year = day * 365;
   
   let date;
-  if (timeGap < min) {
+  if (timeGap < (10 * sec)) {
+    date = '방금'
+  } else if (timeGap < min) {
     date = timeGap / sec;
     date = date.toFixed(0);
     date = date + '초';

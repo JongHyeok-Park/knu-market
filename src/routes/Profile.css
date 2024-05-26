@@ -1,8 +1,13 @@
 .profile {
-  width: 1280px;
+  max-width: 1280px;
+  width: 100%;
   margin: auto;
-  padding: 100px 0;
-  max-width: 100%;
+  padding: 100px 20px;
+  box-sizing: border-box;
+}
+
+.profile-inner {
+  box-sizing: border-box;
 }
 
 .profile-header {
@@ -11,8 +16,9 @@
 }
 
 .profile-image-wrapper {
+  max-width: 100%;
   width: 414px;
-  height: 414px;
+  aspect-ratio: 1;
   border-radius: 100%;
   overflow: hidden;
   display: inline-block;
@@ -53,40 +59,13 @@
   background-color: #d9d9d9;
 }
 
-.star-score-wrapper {
-  text-align: left;
+.star-score-section {
   max-width: 630px;
   margin: auto;
 }
 
 .profile-name-wrapper,
-.star-score-wrapper {
+.star-score-section {
   margin-top: 50px;
   position: relative;
-}
-
-#score-value {
-  position: absolute;
-  right: 0;
-  top: 0;
-  vertical-align: top;
-  font-size: 14px;
-  color: var(--primary2-color);
-}
-
-.star-score {
-  width: 100%;
-  height: 15px;
-  background-color: #d9d9d9;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 10px;
-}
-
-#score {
-  background: linear-gradient(to right, #DADA20, #FFF500);
-  height: 100%;
-  width: 0%;
-  border-radius: 20px;
-  transition: width 0.5s ease-in-out;
 }
