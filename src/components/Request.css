@@ -1,0 +1,44 @@
+.request-wrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.request-wrapper > img {
+  width: 70px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  object-fit: cover;
+}
+
+.request-info {
+  margin-left: 10px;
+}
+
+.request-date {
+  color: var(--primary2-color);
+  font-size: 14px;
+}
+
+.request-approve-btn {
+  margin-left: auto;
+  color: white;
+  background: var(--primary1-color);
+  border-radius: 10px;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.request-cancle-btn {
+  margin-left: auto;
+  color: white;
+  background: var(--primary2-color);
+  border-radius: 10px;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 700;
+  cursor: pointer;
+}

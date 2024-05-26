@@ -6,12 +6,15 @@ import { useSelector } from 'react-redux';
 import { getComment, postComment } from '../api/commentApi';
 import Comment from '../components/Comment';
 import StarScore from '../components/StarScore';
+import { getRequest, postRequest } from '../api/requestApi';
+import Request from '../components/Request';
 
 function Detail(props) {
-  const params = useParams('id');
+  const params = useParams();
   const navigate = useNavigate();
   let [productInfo, setProductInfo] = useState(null);
   let [commentList, setCommentList] = useState([]);
+  let [requstList, setRequestList] = useState([]);
   let user = useSelector(state => state.user);
 
   const getDetailInfo = async () => {
@@ -57,9 +60,30 @@ function Detail(props) {
       });
   }
 
+  const requestPurchase = () => {
+    postRequest(params.id)
+      .then(() => {
+        loadRequests();
+      })
+      .catch((error) => {
+        alert(error.message)
+      });
+  }
+
+  const loadRequests = () => {
+    getRequest(params.id)
+      .then((data) => {
+        setRequestList(data);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  }
+
   useEffect(() => {
     getDetailInfo();
     getCommentList();
+    loadRequests();
     // eslint-disable-next-line
   }, []);
 
@@ -124,6 +148,7 @@ function Detail(props) {
             </div>
             <section className='bottom'>
               <div className='comment-container'>
+                <h3 className='comment-title'>댓글 {commentList.length}개</h3>
                 {
                   user.id ? (<div className='comment-input-container'>
                     <img src={user.imagePath} alt="user-profile" />
@@ -152,7 +177,33 @@ function Detail(props) {
                 }
               </div>
               <div className='purchase-wrapper'>
-
+                {
+                  user.id && Number(user.id) !== Number(productInfo.userId) ? (
+                    <button id='purchase-request' onClick={() => {
+                      requestPurchase();
+                    }}>구매 요청</button>
+                  ) : null
+                }
+                <div className='request-list-container'>
+                  {
+                    requstList.length > 0 ? 
+                    <h4 className='request-list-title'>제가 사고시퍼요..!</h4> : null
+                  }
+                  {
+                    requstList.map((item, i) => {
+                      return (
+                        <Request 
+                          postUser={productInfo.userId}
+                          id={item.id}
+                          name={item.userName}
+                          imagePath={item.userImagePath}
+                          createdAt={item.createdAt}
+                          loadRequests={loadRequests}
+                        />
+                      )
+                    })
+                  }
+                </div>
               </div>
             </section>
           </div>

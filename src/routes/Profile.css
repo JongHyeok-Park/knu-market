@@ -32,9 +32,8 @@
 }
 
 .profile-btn-container {
-  display: inline-block;
-  vertical-align: top;
-  position: absolute;
+  display: block;
+  text-align: right;
   right: 0;
 }
 

@@ -29,6 +29,7 @@ function ModifyUser(props) {
 
   useEffect(() => {
     getItem()
+    // eslint-disable-next-line
   }, [])
 
 
@@ -36,18 +37,7 @@ function ModifyUser(props) {
     <div className="profile">
       <div className="profile-inner">
         <div className='profile-header'>
-          <div className='profile-image-wrapper'>
-            <img className='profile-image' src={
-              inputImage || require('../image/user_icon.png')
-            } alt="profile" />
-            <div id='upload-image' onClick={() => {
-              let fileInput = document.getElementById('image-input');
-              fileInput.click();
-            }}>
-              이미지 업로드
-            </div>
-          </div>
-          <div className='profile-btn-container'>
+        <div className='profile-btn-container'>
             <button className='btn' id='save-btn' onClick={() => {
               let data = getValues();
               patchUser(data.name, data.image, getCookie('accessToken'))
@@ -68,6 +58,17 @@ function ModifyUser(props) {
             <button className='btn' id='cancle-btn' onClick={() => {
               navigate('/profile');
             }}>취소</button>
+          </div>
+          <div className='profile-image-wrapper'>
+            <img className='profile-image' src={
+              inputImage || require('../image/user_icon.png')
+            } alt="profile" />
+            <div id='upload-image' onClick={() => {
+              let fileInput = document.getElementById('image-input');
+              fileInput.click();
+            }}>
+              이미지 업로드
+            </div>
           </div>
           <div className='profile-name-wrapper'>
             <input type="text" id="name"/>

@@ -21,4 +21,7 @@
   text-align: center;
   padding-right: 30px;
   margin-bottom: 5px;
+  width: 100%;
+  max-width: 414px;
+  box-sizing: border-box;
 }

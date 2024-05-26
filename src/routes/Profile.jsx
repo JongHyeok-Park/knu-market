@@ -12,15 +12,15 @@ function Profile(props) {
     <div className="profile">
       <div className="profile-inner">
         <div className='profile-header'>
-          <div className='profile-image-wrapper'>
-            <img className='profile-image' src={
-              user.imagePath || require('../image/user_icon.png')
-            } alt="profile" />
-          </div>
           <div className='profile-btn-container'>
             <button className='btn' id='modify-btn' onClick={() => {
               navigate('/modifyUser');
             }}>수정하기</button>
+          </div>
+          <div className='profile-image-wrapper'>
+            <img className='profile-image' src={
+              user.imagePath || require('../image/user_icon.png')
+            } alt="profile" />
           </div>
           <div className='profile-name-wrapper'>
             <h1>{user.name}</h1>
