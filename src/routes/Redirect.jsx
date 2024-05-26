@@ -14,11 +14,13 @@ function Redirect(props) {
   let [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    try {
-      login(code, setIsLogin);
-    } catch {
-      navigate('/');
-    }
+    login(code)
+      .then(() => {
+        setIsLogin(true);
+      })
+      .catch(() => {
+        navigate('/');
+      });
     // eslint-disable-next-line
   }, []);
 

@@ -23,14 +23,15 @@ function App() {
     if (getCookie('refreshToken') && !getCookie('accessToken')) {
       reissue()
         .then(() => {
-          getUser(getCookie('accessToken'))
-            .then((data) => {
-              dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}))
-              console.log(data);
-            })
-            .catch((error) => {
-              alert(error.message);
-            })
+          setTimeout(() => {
+            getUser(getCookie('accessToken'))
+              .then((data) => {
+                dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}))
+              })
+              .catch((error) => {
+                alert(error.message);
+              })
+          }, 500);
         });
       
     } else if (getCookie('accessToken')) {

@@ -1,14 +1,31 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import { deleteCookie, getCookie } from '../utils/cookieManage';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Footer(params) {
+  let user = useSelector(state => state.user);
+  let dispatch = useDispatch();
+
   return (
     <footer>
       <div className='footer-inner'>
         <div className='footer-link-container'>
           <Link>개인정보처리방침</Link><span> | </span>
-          <Link>고객센터</Link><span> | </span>
-          <Link>로그아웃</Link>
+          <Link>고객센터</Link>
+          {
+            user.id ? (<><span> | </span><Link onClick={() => {
+              deleteCookie('accessToken');
+              deleteCookie('refreshToken');
+              dispatch({
+                id: null,
+                name: null,
+                imagePath: null,
+                starScore: null
+              });
+            }}>로그아웃</Link></>) : null
+          }
+          
         </div>
         <div className='footer-info-container'>
           <p>상호명: 크누장터(주)</p>

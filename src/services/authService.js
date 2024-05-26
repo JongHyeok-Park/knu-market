@@ -12,12 +12,11 @@ const reissue = async () => {
     });
 }
 
-const login = async (code, setIsLogin) => {
+const login = async (code) => {
   loginApi(code)
     .then((data) => {
       setCookie('accessToken', data.accessToken, 2 * 60);
       setCookie('refreshToken', data.refreshToken, 7 * 60);
-      setIsLogin(true);
     })
     .catch((error) => {
       alert(error.message);
