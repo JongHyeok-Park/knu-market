@@ -7,6 +7,11 @@ const getUser = async (accessToken) => {
       }
     });
 
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
   return res.json();
 }
 

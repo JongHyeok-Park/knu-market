@@ -15,12 +15,7 @@ function Redirect(props) {
 
   useEffect(() => {
     try {
-      login(code);
-      getUser(getCookie('accessToken'))
-        .then((data) => {
-          dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
-          setIsLogin(true);
-        });
+      login(code, setIsLogin);
     } catch {
       navigate('/');
     }
@@ -28,7 +23,11 @@ function Redirect(props) {
   }, []);
 
   if (isLogin) {
-    navigate('/');
+    getUser(getCookie('accessToken'))
+        .then((data) => {
+          dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
+          navigate('/');
+        });
   }
 
   return (

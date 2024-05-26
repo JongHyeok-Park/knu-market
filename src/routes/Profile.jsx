@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import './Profile.css';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Profile(props) {
-  let [modifyMode, setModifyMode] = useState(false)
   let user = useSelector(state => state.user);
+  const navigate = useNavigate();
 
 
   return (
@@ -17,19 +17,9 @@ function Profile(props) {
             } alt="profile" />
           </div>
           <div className='profile-btn-container'>
-            {
-              modifyMode ? 
-                <>
-                  <button className='btn' id='save-btn'>저장</button>
-                  <button className='btn' id='cancle-btn' onClick={() => {
-                    setModifyMode(false);
-                  }}>취소</button>
-                </>  
-                :
-              <button className='btn' id='modify-btn' onClick={() => {
-                setModifyMode(true);
-              }}>수정하기</button>
-            }
+            <button className='btn' id='modify-btn' onClick={() => {
+              navigate('/modifyUser');
+            }}>수정하기</button>
           </div>
           <div className='profile-name-wrapper'>
             <h1>{user.name}</h1>

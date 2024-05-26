@@ -14,6 +14,7 @@ import { getUser } from './api/userApi';
 import { useDispatch } from 'react-redux';
 import { setUser } from './store/userSlice';
 import Modify from './routes/Modify';
+import ModifyUser from './routes/ModifyUser';
 
 function App() {
   let dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/redirect' element={<Redirect />} />
         <Route path='/modify/:id' element={<Modify />} />
+        <Route path='/modifyUser' element={<ModifyUser />} />
         <Route path='*' element={(<div>존재하지 않는 페이지입니다.</div>)} />
       </Routes>
       <Footer />
