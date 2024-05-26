@@ -3,11 +3,14 @@ import './Detail.css';
 import { useEffect, useState } from 'react';
 import { deleteProductApi } from '../api/productApi';
 import { useSelector } from 'react-redux';
+import { getComment } from '../api/commentApi';
+import Comment from '../components/Comment';
 
 function Detail(props) {
   const params = useParams('id');
   const navigate = useNavigate();
   let [productInfo, setProductInfo] = useState(null);
+  let [commentList, setCommentList] = useState([]);
   let user = useSelector(state => state.user);
 
   const getDetailInfo = async () => {
@@ -24,7 +27,6 @@ function Detail(props) {
         let formattedDate = date.getFullYear() + "-" + ("0" + date.getMonth()).slice(-2) + "-" + ("0" + date.getDay()).slice(-2);
         result.createdAt = formattedDate;
         setProductInfo(result);
-        console.log(result);
       })
       .catch((err) => {
         alert(err.message)
@@ -32,8 +34,19 @@ function Detail(props) {
       });
   };
 
+  const getCommentList = () => {
+    getComment(params.id)
+      .then((data) => {
+        setCommentList(data);
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+  }
+
   useEffect(() => {
     getDetailInfo();
+    getCommentList();
     // eslint-disable-next-line
   }, []);
 
@@ -90,12 +103,33 @@ function Detail(props) {
                       <h3>{productInfo.userName}</h3>
                     </span>
                   </div>
-                  <div className='bottom'>
-
+                  <div className='product-star-score-wrapper'>
+                      
                   </div>
                 </div>
               </div>
             </div>
+            <section className='bottom'>
+              <div className='comment-container'>
+                {
+                  commentList.map((item, i) => {
+                    if (!item.isSecret) {
+                      return (
+                        <Comment 
+                          userName={item.userName}
+                          userImagePath={item.userImagePath}
+                          createdAt={item.createdAt}
+                          content={item.content}
+                          key={i} />
+                      )
+                    }
+                  })
+                }
+              </div>
+              <div className='purchase-wrapper'>
+
+              </div>
+            </section>
           </div>
         ) :
         (

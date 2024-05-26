@@ -1,0 +1,44 @@
+.comment {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-user-image-wrapper {
+  width: 70px;
+  border-radius: 100%;
+  overflow: hidden;
+} 
+
+.comment-user-image-wrapper > img {
+  width: 100%;
+}
+
+.comment-header {
+  display: flex;
+  width: 100%;
+  margin-bottom: 5px;
+  align-items: center;
+}
+
+.commnet-delete {
+  background: none;
+  color: var(--primary2-color);
+  border: none;
+  margin-left: auto;
+}
+
+.commnet-date {
+  color: var(--primary2-color);
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.comment-user-name {
+  font-weight: 700;
+}
+
+.comment-user-wrapper {
+  width: 100%;
+}

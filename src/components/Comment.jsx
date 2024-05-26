@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom';
-import './Product.css';
+import './Comment.css';
 
-function Product(props) {
+function Comment(props) {
   const today = new Date();
-  const uploadedDate = new Date(props.product.createdAt);
+  const uploadedDate = new Date(props.createdAt);
   let timeGap = today.getTime() - uploadedDate.getTime();
 
   const sec = 1000;
@@ -12,7 +11,7 @@ function Product(props) {
   const day = hour * 24;
   const week = day * 7;
   const month = day * 31;
-  const year = day * 365
+  const year = day * 365;
   
   let date;
   if (timeGap < min) {
@@ -40,26 +39,28 @@ function Product(props) {
     date = date.toFixed(0)
     date = date + '달';
   } 
-
+  
   return (
-    <div className="product">
-      <Link to={'/detail/' + props.product.id}>
-        <div className='product-image-wrapper'>
-          {
-            props.product.imagePath ? 
-            <img className="product-image" src={props.product.imagePath} alt="product" /> :
-            "이미지가 없어요."
-          }
+    <div className="comment-wrapper">
+      <div className="comment">
+        <div className="comment-user-image-wrapper"> 
+          <img src={props.userImagePath} alt="user-profile" />
         </div>
-        <h3 className="product-title">{props.product.title}</h3>
-        <h2 className="product-price">{Number(props.product.price).toLocaleString()}원</h2>
-        <div className="product-subinfo">
-          <h4 className="product-user">{props.product.userName}</h4>
-          <span className="product-date">{date} 전</span>
+        <div className='comment-user-wrapper'>
+          <div className="comment-header">
+            <span className="comment-user-name">{props.userName}</span>
+            <span className="commnet-date">{date} 전</span>
+            <button className="commnet-delete">삭제</button>
+          </div>
+          <div>
+            <p className="comment-content">
+              {props.content}
+            </p>
+          </div>
         </div>
-      </Link>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Product;
+export default Comment;
