@@ -26,11 +26,13 @@ function Redirect(props) {
 
   useEffect(() => {
     if (isLogin) {
-      getUser(getCookie('accessToken'))
+      setTimeout(() => {
+        getUser(getCookie('accessToken'))
           .then((data) => {
             dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
             navigate('/');
           });
+      }, 500);
     }
   }, [isLogin])  
 
