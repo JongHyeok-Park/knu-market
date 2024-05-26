@@ -20,7 +20,12 @@ const patchUser = async (name, image, accessToken) => {
     body: image
   });
 
-  return res.json();
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
+  return res.text();
 }
 
 // 닉네임 중복 확인
