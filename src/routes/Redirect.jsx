@@ -24,13 +24,15 @@ function Redirect(props) {
     // eslint-disable-next-line
   }, []);
 
-  if (isLogin) {
-    getUser(getCookie('accessToken'))
-        .then((data) => {
-          dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
-          navigate('/');
-        });
-  }
+  useEffect(() => {
+    if (isLogin) {
+      getUser(getCookie('accessToken'))
+          .then((data) => {
+            dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
+            navigate('/');
+          });
+    }
+  }, [isLogin])  
 
   return (
     <div className='detail-loading-wrapper'>

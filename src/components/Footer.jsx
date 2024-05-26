@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import './Footer.css';
-import { deleteCookie, getCookie } from '../utils/cookieManage';
+import { deleteCookie } from '../utils/cookieManage';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Footer(params) {
