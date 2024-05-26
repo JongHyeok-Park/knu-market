@@ -24,13 +24,37 @@ const postComment = async (id, comment, isSecret) => {
 }
 
 // 댓글 삭제
-const deleteComment = () => {
+const deleteComment = async (id) => {
+  let res = await fetch(process.env.REACT_APP_API_URL + '/api/comment/' + id, {
+    method: 'DELETE',
+    headers: {
+      authorization: 'Bearer ' + getCookie('accessToken')
+    }
+  });
 
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
+  return res.text();
 }
 
 // 댓글 수정
-const patchComment = () => {
+const patchComment = async (id, comment) => {
+  let res = await fetch(process.env.REACT_APP_API_URL + `/api/comment/${id}?content=${comment}`, {
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Bearer ' + getCookie('accessToken')
+    }
+  });
 
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
+  return res.text();
 }
 
 // 댓글 조회

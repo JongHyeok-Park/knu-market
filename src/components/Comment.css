@@ -22,12 +22,16 @@
   align-items: center;
 }
 
-.commnet-delete {
+.comment-btn {
   background: none;
   color: var(--primary2-color);
   border: none;
-  margin-left: auto;
+  margin-left: 5px;
   cursor: pointer;
+}
+
+.comment-modify {
+  margin-left: auto;
 }
 
 .commnet-date {
@@ -42,4 +46,42 @@
 
 .comment-user-wrapper {
   width: 100%;
+}
+
+.comment-modify-btn-container {
+  width: auto;
+  display: inline-block;
+  margin-left: 5px;
+}
+
+#comment-modify-btn {
+  color: white;
+  background-color: var(--primary1-color);
+  border: none;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  display: block;
+}
+
+#comment-cancle-btn {
+  color: white;
+  background-color: #d9d9d9;
+  border: none;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-top: 5px;
+  cursor: pointer;
+  display: block;
+}
+
+#modify-input {
+  width: 100%;
+  border-radius: 10px;
+  border: #d9d9d9 1px solid;
+  padding: 5px 10px;
 }

@@ -136,10 +136,12 @@ function Detail(props) {
                     if (!item.isSecret) {
                       return (
                         <Comment 
+                          id={item.id}
                           userName={item.userName}
                           userImagePath={item.userImagePath}
                           createdAt={item.createdAt}
                           content={item.content}
+                          getCommentList={getCommentList}
                           key={i} />
                       )
                     }

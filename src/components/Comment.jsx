@@ -1,9 +1,26 @@
+import { useState } from 'react';
 import './Comment.css';
+import { useSelector } from 'react-redux';
+import { deleteComment, patchComment } from '../api/commentApi';
 
 function Comment(props) {
   const today = new Date();
   const uploadedDate = new Date(props.createdAt);
   let timeGap = today.getTime() - uploadedDate.getTime();
+  let [isModify, setIsModify] = useState(false);
+  let user = useSelector(state => state.user);
+
+  const modify = () => {
+    let commentContent = document.getElementById('modify-input').value;
+    patchComment(props.id, commentContent)
+      .then(() => {
+        props.getCommentList();
+        setIsModify(false);
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+  }
 
   const sec = 1000;
   const min = sec * 60;
@@ -42,23 +59,56 @@ function Comment(props) {
   
   return (
     <div className="comment-wrapper">
-      <div className="comment">
-        <div className="comment-user-image-wrapper"> 
-          <img src={props.userImagePath} alt="user-profile" />
-        </div>
-        <div className='comment-user-wrapper'>
-          <div className="comment-header">
-            <span className="comment-user-name">{props.userName}</span>
-            <span className="commnet-date">{date} 전</span>
-            <button className="commnet-delete">삭제</button>
+      {
+        isModify ? (<div className='comment-input-container'>
+            <img src={user.imagePath} alt="user-profile" />
+            <textarea id='modify-input'>{props.content}</textarea>
+            <div className='comment-modify-btn-container'>
+              <button id='comment-modify-btn' onClick={() => {
+                modify();
+              }}>수정</button>
+              <button id='comment-cancle-btn' onClick={() => {
+                setIsModify(false);
+              }}>취소</button>
+            </div>
+          </div>) : (
+            <div className="comment">
+            <div className="comment-user-image-wrapper"> 
+              <img src={props.userImagePath} alt="user-profile" />
+            </div>
+            <div className='comment-user-wrapper'>
+              <div className="comment-header">
+                <span className="comment-user-name">{props.userName}</span>
+                <span className="commnet-date">{date} 전</span>
+                {
+                  props.userName === user.name ? (
+                    <>
+                      <button className='comment-modify comment-btn' onClick={() => {
+                        setIsModify(true);
+                      }}>수정</button>
+                      <button className="commnet-delete comment-btn" onClick={() => {
+                        deleteComment(props.id)
+                          .then(() => {
+                            props.getCommentList();
+                          })
+                          .catch((error) => {
+                            alert(error.message);
+                          })
+                      }}>삭제</button>
+                    </>
+                  ) : null
+                }
+                
+              </div>
+              <div>
+                <p className="comment-content">
+                  {props.content}
+                </p>
+              </div>
+            </div>
           </div>
-          <div>
-            <p className="comment-content">
-              {props.content}
-            </p>
-          </div>
-        </div>
-      </div>
+          )
+      }
     </div>
   );
 }
