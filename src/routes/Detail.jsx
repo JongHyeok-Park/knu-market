@@ -199,6 +199,7 @@ function Detail(props) {
                           imagePath={item.userImagePath}
                           createdAt={item.createdAt}
                           loadRequests={loadRequests}
+                          key={i}
                         />
                       )
                     })

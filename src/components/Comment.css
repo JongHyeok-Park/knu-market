@@ -7,8 +7,12 @@
 
 .comment-user-image-wrapper {
   width: 70px;
+  aspect-ratio: 1;
   border-radius: 100%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 } 
 
 .comment-user-image-wrapper > img {

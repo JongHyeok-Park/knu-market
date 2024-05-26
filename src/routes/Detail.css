@@ -170,7 +170,8 @@
 }
 
 .purchase-wrapper {
-  width: calc(4 / 12 * 100% - 10px)
+  width: calc(4 / 12 * 100% - 10px);
+  flex: none;
 }
 
 #purchase-request {
