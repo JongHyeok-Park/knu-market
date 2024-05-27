@@ -7,7 +7,6 @@ function Profile(props) {
   let user = useSelector(state => state.user);
   const navigate = useNavigate();
 
-
   return (
     <div className="profile">
       <div className="profile-inner">
@@ -26,7 +25,7 @@ function Profile(props) {
             <h1>{user.name}</h1>
           </div>
           <div className="star-score-section">
-            <StarScore />
+            <StarScore starScore={user.starScore} />
           </div>
         </div>
       </div>

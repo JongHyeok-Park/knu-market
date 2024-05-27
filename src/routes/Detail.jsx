@@ -141,7 +141,7 @@ function Detail(props) {
                     </span>
                   </div>
                   <div className='product-star-score-wrapper'>
-                      <StarScore />
+                      <StarScore starScore={productInfo.starScore} />
                   </div>
                 </div>
               </div>
