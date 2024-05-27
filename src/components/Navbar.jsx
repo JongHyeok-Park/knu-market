@@ -26,8 +26,8 @@ function Navbar() {
   useEffect(() => {
     if (user.id && getCookie('accessToken')) {
       getAlarm();
-      console.log('로드');
     }
+    // eslint-disable-next-line
   }, [location])
 
   return (

@@ -18,6 +18,7 @@ function AlarmItem(props) {
 
   useEffect(() => {
     getProductInfo();
+    // eslint-disable-next-line
   }, [])
 
   return (
@@ -28,7 +29,7 @@ function AlarmItem(props) {
         <div className="alarm-image">
           {
             productInfo ? 
-              <img src={productInfo.imagePath} alt="alarm-image" /> : null
+              <img src={productInfo.imagePath} alt="alarm" /> : null
           }
         </div>
         <div className="alarm-product-content">

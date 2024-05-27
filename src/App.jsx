@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Main from './routes/Main';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -19,6 +19,7 @@ import ChatBot from './components/ChatBot';
 
 function App() {
   let dispatch = useDispatch();
+  let location = useLocation();
 
   useEffect(() => {
     if (getCookie('refreshToken') && !getCookie('accessToken')) {
@@ -45,7 +46,7 @@ function App() {
         })
     }
     // eslint-disable-next-line
-  }, []);
+  }, [location]);
 
   return (
     <div className="App">

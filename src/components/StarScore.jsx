@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux"
 import './StarScore.css';
 
 function StarScore(props) {
-
   return (
     <div className='star-score-wrapper'>
       <h4>별자리 점수</h4>
