@@ -56,4 +56,15 @@ const modifyProductApi = async (id, title, price, description, image) => {
   return res.text();
 }
 
-export { searchProductApi, deleteProductApi, modifyProductApi };
+const getProductInfoApi = async (id) => {
+  let res = await fetch(process.env.REACT_APP_API_URL + '/api/product/' + id);
+
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
+  return res.json();
+}
+
+export { searchProductApi, deleteProductApi, modifyProductApi, getProductInfoApi };

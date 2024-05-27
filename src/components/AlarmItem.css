@@ -6,10 +6,21 @@
   -ms-user-select:none;
   user-select:none;
   cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #D9D9D9;
+  margin-bottom: 5px;
 }
 
 .alarm-product {
   display: flex;
+}
+
+.alarm-product-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .alarm-product-content {
@@ -22,6 +33,14 @@
   background-color: #D9D9D9;
   width: 50px;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alarm-image > img {
+  width: 100%;
+  aspect-ratio: 1;
 }
 
 .alarm-date {
