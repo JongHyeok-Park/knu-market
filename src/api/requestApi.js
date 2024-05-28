@@ -47,8 +47,20 @@ const deleteRequest = async (id) => {
 }
 
 // 구매 요청 수락
-const patchRequest = () => {
+const patchRequest = async (id) => {
+  let res = await fetch(process.env.REACT_APP_API_URL + '/api/request/' + id, {
+    method: 'PATCH',
+    headers: {
+      'authorization': 'Bearer ' + getCookie('accessToken')
+    }
+  })
 
+  if (!res.ok) {
+    let message = await res.text();
+    throw new Error(message);
+  }
+
+  return res.text();
 }
 
 export { getRequest, postRequest, deleteRequest, patchRequest };

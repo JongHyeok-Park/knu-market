@@ -1,10 +1,12 @@
 import { useSelector } from 'react-redux';
 import './Request.css';
-import { deleteRequest } from '../api/requestApi';
+import { deleteRequest, patchRequest } from '../api/requestApi';
+import { useNavigate } from 'react-router-dom';
 
 function Request(props) {
   const today = new Date();
   const uploadedDate = new Date(props.createdAt);
+  const navigate = useNavigate();
   let timeGap = today.getTime() - uploadedDate.getTime();
   let user = useSelector(state => state.user);
 
@@ -49,6 +51,17 @@ function Request(props) {
     date = date + '달';
   } 
 
+  const handleApprove = () => {
+    patchRequest(props.id)
+      .then(() => {
+        alert('거래 완료되었습니다.');
+        navigate('/');
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+  }
+
   return (
     <div className="request-wrapper">
       <img src={props.imagePath} alt="user" />
@@ -58,7 +71,9 @@ function Request(props) {
       </div>
       {
         Number(props.postUser) === Number(user.id) && props.name !== user.name ? (
-          <button className='request-approve-btn'>거래하기</button>
+          <button className='request-approve-btn' onClick={() => {
+            handleApprove();
+          }}>거래하기</button>
         ) : null
       }
       {

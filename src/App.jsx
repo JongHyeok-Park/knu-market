@@ -7,7 +7,7 @@ import Detail from './routes/Detail';
 import Post from './routes/Post';
 import Profile from './routes/Profile';
 import Redirect from './routes/Redirect';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getCookie } from './utils/cookieManage';
 import { reissue } from './services/authService';
 import { getUser } from './api/userApi';
@@ -16,10 +16,12 @@ import { setUser } from './store/userSlice';
 import Modify from './routes/Modify';
 import ModifyUser from './routes/ModifyUser';
 import ChatBot from './components/ChatBot';
+import EvaluationModal from './components/EvaluationModal';
 
 function App() {
   let dispatch = useDispatch();
   let location = useLocation();
+  let [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     if (getCookie('refreshToken') && !getCookie('accessToken')) {
@@ -50,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar setOpenModal={setOpenModal}/>
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/detail/:id' element={<Detail />} />
@@ -61,6 +63,9 @@ function App() {
         <Route path='/modifyUser' element={<ModifyUser />} />
         <Route path='*' element={(<div>존재하지 않는 페이지입니다.</div>)} />
       </Routes>
+      {
+        openModal ? <EvaluationModal setOpenModal={setOpenModal} /> : null
+      }
       <ChatBot />
       <Footer />
     </div>

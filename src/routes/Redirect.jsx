@@ -34,6 +34,7 @@ function Redirect(props) {
           });
       }, 500);
     }
+    // eslint-disable-next-line
   }, [isLogin])  
 
   return (

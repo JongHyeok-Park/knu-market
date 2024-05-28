@@ -4,10 +4,13 @@ import { getProductInfoApi } from '../api/productApi';
 import formatDate from '../utils/formatDate';
 import { deleteAlarmApi } from '../api/alarmApi';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setEval } from '../store/evaluateSlice';
 
 function AlarmItem(props) {
   let [productInfo, setProductInfo] = useState();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let message;
 
@@ -24,8 +27,6 @@ function AlarmItem(props) {
     default:
       break;
   }
-
-  console.log(props.type)
 
   const getProductInfo = () => {
     getProductInfoApi(props.productId)
@@ -44,6 +45,11 @@ function AlarmItem(props) {
           props.setOpenAlarm(false);
           props.getAlarm();
           navigate('/detail/' + props.productId);
+        } else if (props.type === 2) {
+          props.setOpenAlarm(false);
+          props.getAlarm();
+          dispatch(setEval(props.id, props.senderName));
+          props.setOpenModal(true);
         }
       })
       .catch((error) => {

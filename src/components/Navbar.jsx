@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { getCookie } from '../utils/cookieManage';
 import { getAlarmApi } from '../api/alarmApi';
 
-function Navbar() {
+function Navbar(props) {
   let user = useSelector(state => state.user);
   let [openAlarm, setOpenAlarm] = useState(false);
   let [alarmList, setAlarmList] = useState([]);
@@ -23,16 +23,11 @@ function Navbar() {
       })
   }
 
-
-  if (user.id && getCookie('accessToken')) {
-    getAlarm();
-  }
-
   useEffect(() => {
     if (user.id && getCookie('accessToken')) {
       getAlarm();
     }
-  }, [location]);
+  }, [location, user.id]);
 
   return (
     <nav>
@@ -80,6 +75,7 @@ function Navbar() {
                                 senderName={item.senderName}
                                 getAlarm={getAlarm}
                                 setOpenAlarm={setOpenAlarm}
+                                setOpenModal={props.setOpenModal}
                                 key={i}
                                 /> )
                             }) :
