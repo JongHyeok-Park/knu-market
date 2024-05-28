@@ -142,6 +142,7 @@
   border-radius: 10px;
   font-weight: 700;
   margin-left: 5px;
+  margin-bottom: 5px;
 }
 
 .comment-input-container > img {
@@ -191,6 +192,22 @@
 .request-list-title {
   margin-bottom: 10px;
   color: var(--primary2-color);
+}
+
+#is-secret-label {
+  color: var(--primary2-color);
+  font-size: 12px;
+}
+
+.is-secret-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.comment-control-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (max-width: 900px) {

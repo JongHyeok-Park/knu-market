@@ -50,7 +50,8 @@ function Detail(props) {
 
   const comment = () => {
     let commentContent = document.getElementById('comment-input');
-    postComment(params.id, commentContent.value, false)
+    let isSecret = document.getElementById('is-secret').checked;
+    postComment(params.id, commentContent.value, isSecret)
       .then(() => {
         getCommentList();
         commentContent.value = '';
@@ -153,26 +154,31 @@ function Detail(props) {
                   user.id ? (<div className='comment-input-container'>
                     <img src={user.imagePath} alt="user-profile" />
                     <textarea id='comment-input'></textarea>
-                    <button id='comment-submit-btn' onClick={() => {
-                      comment();
-                    }}>작성</button>
+                    <div className='comment-control-wrapper'>
+                      <button id='comment-submit-btn' onClick={() => {
+                        comment();
+                      }}>작성</button>
+                      <div className='is-secret-wrapper'>
+                        <label htmlFor="is-secret" id='is-secret-label'>비밀댓글</label>
+                        <input type="checkbox" name="isSecret" id="is-secret" />
+                      </div>
+                    </div>
                   </div>) : null
                 }
                 {
                   commentList.map((item, i) => {
-                    if (!item.isSecret) {
-                      return (
-                        <Comment 
-                          id={item.id}
-                          userName={item.userName}
-                          userImagePath={item.userImagePath}
-                          createdAt={item.createdAt}
-                          content={item.content}
-                          getCommentList={getCommentList}
-                          key={i} />
-                      )
-                    }
-                    return null;
+                    return (
+                      <Comment 
+                        id={item.id}
+                        userName={item.userName}
+                        userImagePath={item.userImagePath}
+                        createdAt={item.createdAt}
+                        content={item.content}
+                        isSecret={item.isSecret}
+                        productUserId={productInfo.userId}
+                        getCommentList={getCommentList}
+                        key={i} />
+                    )
                   })
                 }
               </div>

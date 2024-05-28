@@ -44,6 +44,10 @@
   font-size: 14px;
 }
 
+.secret.comment-content {
+  color: grey;
+}
+
 .comment-user-name {
   font-weight: 700;
 }
