@@ -9,7 +9,6 @@ function Comment(props) {
   let timeGap = today.getTime() - uploadedDate.getTime();
   let [isModify, setIsModify] = useState(false);
   let user = useSelector(state => state.user);
-  console.log(props.content);
 
   const modify = () => {
     let commentContent = document.getElementById('modify-input').value;
@@ -86,7 +85,7 @@ function Comment(props) {
             <div className='comment-user-wrapper'>
               <div className="comment-header">
                 <span className="comment-user-name">{props.userName}</span>
-                <span className="commnet-date">{date} 전</span>
+                <span className="commnet-date">{date} 전{ props.isSecret ? ' (비밀댓글)' : null }</span>
                 {
                   props.userName === user.name ? (
                     <>
