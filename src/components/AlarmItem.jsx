@@ -2,14 +2,49 @@ import { useEffect, useState } from 'react';
 import './AlarmItem.css'
 import { getProductInfoApi } from '../api/productApi';
 import formatDate from '../utils/formatDate';
+import { deleteAlarmApi } from '../api/alarmApi';
+import { useNavigate } from 'react-router-dom';
 
 function AlarmItem(props) {
   let [productInfo, setProductInfo] = useState();
+  const navigate = useNavigate();
+
+  let message;
+
+  switch (props.type) {
+    case 0:
+      message = '님이 댓글을 달았어요.'
+      break;
+    case 1:
+      message = '님이 구매 요청했어요.'
+      break;
+    case 2:
+      message = '님이 구매 수락했어요.'
+      break;
+    default:
+      break;
+  }
+
+  console.log(props.type)
 
   const getProductInfo = () => {
     getProductInfoApi(props.productId)
       .then((data) => {
         setProductInfo(data);
+      })
+      .catch((error) => {
+        alert(error.message);
+      })
+  }
+
+  const checkAlarm = () => {
+    deleteAlarmApi(props.id)
+      .then(() => {
+        if (props.type === 0 || props.type === 1) {
+          props.setOpenAlarm(false);
+          props.getAlarm();
+          navigate('/detail/' + props.productId);
+        }
       })
       .catch((error) => {
         alert(error.message);
@@ -22,9 +57,11 @@ function AlarmItem(props) {
   }, [])
 
   return (
-    <li className="alarm-item">
+    <li className="alarm-item" onClick={() => {
+      checkAlarm();
+    }}>
       <span className="alarm-date">{formatDate(props.createdAt)} 전</span>
-      <span className="alarm-title">한승규님이 구매요청했어요!</span>
+      <span className="alarm-title">{props.senderName + message}</span>
       <div className="alarm-product">
         <div className="alarm-image">
           {

@@ -23,12 +23,16 @@ function Navbar() {
       })
   }
 
+
+  if (user.id && getCookie('accessToken')) {
+    getAlarm();
+  }
+
   useEffect(() => {
     if (user.id && getCookie('accessToken')) {
       getAlarm();
     }
-    // eslint-disable-next-line
-  }, [location])
+  }, [location]);
 
   return (
     <nav>
@@ -69,9 +73,13 @@ function Navbar() {
                           alarmList.length > 0 ?
                             alarmList.map((item, i) => {
                               return (<AlarmItem 
+                                id={item.id}
                                 productId={item.productId}
                                 type={item.type}
                                 createdAt={item.createdAt}
+                                senderName={item.senderName}
+                                getAlarm={getAlarm}
+                                setOpenAlarm={setOpenAlarm}
                                 key={i}
                                 /> )
                             }) :
