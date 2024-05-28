@@ -39,22 +39,24 @@ function AlarmItem(props) {
   }
 
   const checkAlarm = () => {
-    deleteAlarmApi(props.id)
-      .then(() => {
-        if (props.type === 0 || props.type === 1) {
+    if (props.type === 0 || props.type === 1) {
+      deleteAlarmApi(props.id)
+        .then(() => {
           props.setOpenAlarm(false);
           props.getAlarm();
           navigate('/detail/' + props.productId);
-        } else if (props.type === 2) {
-          props.setOpenAlarm(false);
-          props.getAlarm();
-          dispatch(setEval(props.id, props.senderName));
-          props.setOpenModal(true);
-        }
-      })
-      .catch((error) => {
-        alert(error.message);
-      })
+        })
+        .catch((error) => {
+          alert(error.message);
+        })
+    }
+
+    else if (props.type === 2) {
+      props.setOpenAlarm(false);
+      props.getAlarm();
+      dispatch(setEval({id: props.id, name: props.senderName}));
+      props.setOpenModal(true);
+    }
   }
 
   useEffect(() => {

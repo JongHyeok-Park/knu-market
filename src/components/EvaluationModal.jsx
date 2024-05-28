@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import './EvaluationModal.css';
 import { postEvaluate } from '../api/evaluateApi';
+import { deleteAlarmApi } from '../api/alarmApi';
 
 function EvaluationModal(props) {
   let evaluate = useSelector(state => state.evaluate);
@@ -25,12 +26,27 @@ function EvaluationModal(props) {
       return
     }
 
-    postEvaluate(props.id, val)
+    postEvaluate(evaluate.id, val)
       .then(() => {
-        props.setOpenModal(false);
+        deleteAlarmApi(evaluate.id)
+          .then(() => {
+            props.setOpenModal(false);
+          })
+          .catch((error) => {
+            alert(error.message);
+          })
       })
       .catch((error) => {
         alert(error.message);
+        if (error.message === '중복된 요청입니다.') {
+          deleteAlarmApi(evaluate.id)
+            .then(() => {
+              props.setOpenModal(false);
+            })
+            .catch((error) => {
+              alert(error.message);
+            })
+        }
       })
   }
 
@@ -64,7 +80,6 @@ function EvaluationModal(props) {
       <div className='score-submit-btn-wrapper'>
         <button onClick={() => {
           handleSubmit();
-          props.setOpenModal(false);
         }}>제출</button>
       </div>
     </div>

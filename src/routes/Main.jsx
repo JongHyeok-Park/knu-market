@@ -107,7 +107,7 @@ function Main() {
           <div className='products-container'>
             {
               products.map((item) => {
-                return (<Product product={item} key={item.id}/>)
+                  return (<Product product={item} key={item.id}/>)
               })
             }
           </div>
