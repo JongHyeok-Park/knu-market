@@ -6,6 +6,7 @@ import UserChatItem from './UserChatItem';
 function ChatBot(props) {
   let [onChat, setOnChat] = useState(false);
   let [chatList, setChatList] = useState([]);
+  let [isLoading, setIsLoading] = useState(false);
 
   const onSubmitContent = (e) => {
     let input = document.getElementById('chat-input');
@@ -39,7 +40,7 @@ function ChatBot(props) {
     if (messageContainer) {
       messageContainer.scrollTo({left: 0, top: messageContainer.scrollHeight, behavior: 'smooth'});
     }
-  }, [chatList, onChat]);
+  }, [chatList, onChat, isLoading]);
 
   return (
     <div className="chatbot-wrapper">
@@ -55,10 +56,18 @@ function ChatBot(props) {
               </button>
             </div>
             <div className='chatbot-message-contents' id='message-container'>
+              <div className="chat-item bot">
+                <div className="chat-image-wrapper">
+                  <img className="chat-image" src={require('../image/bot_message.png')} alt="" />
+                </div>
+                <div className="chat-content">
+                안녕하세요! 상담 챗봇입니다. 상품, 프로필, 거래 평가, 별자리 점수 관련하여 궁금한 점이 있으면 말씀해주세요!
+                </div>
+              </div>
               {
                 chatList.map((item, i) => {
                   if (item.isBot) {
-                    return <BotChatItem content={item.content} key={i} />
+                    return <BotChatItem content={item.content} key={i} setIsLoading={setIsLoading} />
                   }
                   return <UserChatItem content={item.content} key={i} />
                 })

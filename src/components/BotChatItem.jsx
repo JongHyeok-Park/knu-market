@@ -9,6 +9,7 @@ function BotChatItem(props) {
     getChat(props.content)
       .then((data) => {
         setResponse(data);
+        props.setIsLoading(false);
       })
       .catch((error) => {
         setResponse(error.message);
@@ -16,6 +17,7 @@ function BotChatItem(props) {
   }
 
   useEffect(() => {
+    props.setIsLoading(true);
     handleChat();
     // eslint-disable-next-line
   }, []);
