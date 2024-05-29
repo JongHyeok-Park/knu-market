@@ -39,7 +39,7 @@ function ChatBot(props) {
     if (messageContainer) {
       messageContainer.scrollTo({left: 0, top: messageContainer.scrollHeight, behavior: 'smooth'});
     }
-  }, [chatList]);
+  }, [chatList, onChat]);
 
   return (
     <div className="chatbot-wrapper">
