@@ -32,6 +32,7 @@ function Profile(props) {
 
   useEffect(() => {
     handleProductList();
+    // eslint-disable-next-line
   }, [page]);
 
   return (

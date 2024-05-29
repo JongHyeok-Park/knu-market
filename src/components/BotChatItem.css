@@ -1,0 +1,41 @@
+.chat-image-wrapper {
+  width: 40px;
+  height: 40px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  background: var(--primary1-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+
+.chat-item {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 10px
+}
+
+.chat-item.bot {
+  justify-content: left;
+}
+
+.chat-image-wrapper > img {
+  width: 30px; 
+}
+
+.chat-content {
+  display: inline-block;
+  width: 80%;
+  margin-left: 5px;
+  background-color: aliceblue;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 5px 0 5px 5px;
+  font-size: 14px;
+}
+
+.bot .chat-content {
+  background-color: #d9d9d9;
+  border-radius: 0 5px 5px 5px;
+}

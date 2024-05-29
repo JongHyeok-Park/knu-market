@@ -33,11 +33,19 @@
   box-shadow: 0 0 10px #eee;
   background-color: white;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .chatbot-message-header {
   display: flex;
-  padding: 5px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.chatbot-message-contents {
+  height: calc(100% - 120px);
+  overflow-y: scroll;
+  padding: 10px;
 }
 
 .chatbot-close-btn {
@@ -47,7 +55,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  margin-left: auto;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
 .chatbot-close-btn > img {
@@ -58,4 +68,25 @@
 .chat-open {
   height: calc(100vh - 100px);
   max-height: 400px;
+}
+
+.chat-send-btn {
+  background: var(--primary1-color);
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+}
+
+.chat-input-wrapper {
+  display: flex;
+  position: absolute;
+  bottom: 15px;
+  justify-content: center;
+  width: 100%;
+}
+
+#chat-input {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin-right: 5px;
 }
