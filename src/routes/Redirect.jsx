@@ -24,15 +24,23 @@ function Redirect(props) {
     // eslint-disable-next-line
   }, []);
 
+  let tryLogin = () => {
+    setTimeout(() => {
+      if (getCookie('accessToken')) {
+        getUser(getCookie('accessToken'))
+        .then((data) => {
+          dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
+          navigate('/');
+        });
+      } else {
+        tryLogin();
+      }
+    }, 500);
+  }
+
   useEffect(() => {
     if (isLogin) {
-      setTimeout(() => {
-        getUser(getCookie('accessToken'))
-          .then((data) => {
-            dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}));
-            navigate('/');
-          });
-      }, 500);
+      tryLogin();
     }
     // eslint-disable-next-line
   }, [isLogin])  

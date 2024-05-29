@@ -5,7 +5,7 @@ const reissue = async () => {
   reissueApi(getCookie('refreshToken'))
     .then((data) => {
       setCookie('accessToken', data.accessToken, 2 * 60);
-      setCookie('refreshToken', data.refreshToken, 7 * 60);
+      setCookie('refreshToken', data.refreshToken, 7 * 24 * 60);
     })
     .catch((error) => {
       alert(error.message);
@@ -16,7 +16,7 @@ const login = async (code) => {
   loginApi(code)
     .then((data) => {
       setCookie('accessToken', data.accessToken, 2 * 60);
-      setCookie('refreshToken', data.refreshToken, 7 * 60);
+      setCookie('refreshToken', data.refreshToken, 7 * 24 * 60);
     })
     .catch((error) => {
       alert(error.message);
