@@ -1,5 +1,6 @@
+import { Navigate } from "react-router-dom";
 import { loginApi, reissueApi } from "../api/authApi"
-import { getCookie, setCookie } from "../utils/cookieManage"
+import { deleteCookie, getCookie, setCookie } from "../utils/cookieManage"
 
 const reissue = async () => {
   reissueApi(getCookie('refreshToken'))
@@ -8,7 +9,7 @@ const reissue = async () => {
       setCookie('refreshToken', data.refreshToken, 7 * 24 * 60);
     })
     .catch((error) => {
-      alert(error.message);
+      deleteCookie('refreshToken');
     });
 }
 

@@ -28,13 +28,15 @@ function App() {
       reissue()
         .then(() => {
           setTimeout(() => {
-            getUser(getCookie('accessToken'))
-              .then((data) => {
-                dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}))
-              })
-              .catch((error) => {
-                alert(error.message);
-              })
+            if (getCookie('accessToken')) {
+              getUser(getCookie('accessToken'))
+                .then((data) => {
+                  dispatch(setUser({id: data.id, name: data.name, imagePath: data.imagePath, starScore: data.starScore}))
+                })
+                .catch((error) => {
+                  alert(error.message);
+                })
+            }
           }, 500);
         });
       
