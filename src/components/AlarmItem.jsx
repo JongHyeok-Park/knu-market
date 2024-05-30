@@ -73,7 +73,7 @@ function AlarmItem(props) {
       <div className="alarm-product">
         <div className="alarm-image">
           {
-            productInfo.imagePath ? 
+            productInfo?.imagePath ? 
               <img src={productInfo.imagePath} alt="alarm" /> : null
           }
         </div>
